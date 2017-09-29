@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
@@ -20,6 +21,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
 
 public class CalcAvanzada {
 
@@ -108,10 +110,13 @@ public class CalcAvanzada {
 		frmListaDeLa.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 85, 384, 134);
+		frmListaDeLa.getContentPane().add(scrollPane);
+		
 		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 		textArea.setBorder(new LineBorder(new Color(0, 0, 0)));
-		textArea.setBounds(20, 85, 384, 134);
-		frmListaDeLa.getContentPane().add(textArea);
 		
 		JButton btnAadirProductoCreado = new JButton("A\u00F1adir producto creado");
 		
@@ -133,8 +138,8 @@ public class CalcAvanzada {
 		//edición de eventos de botones
 		btnFinalizarCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Color bg = new Color(0,255,0);
-				textArea.setBackground(bg);
+				String total4 = String.valueOf(total3);
+				JOptionPane.showMessageDialog(null, "Gracias por su compra, debe pagar " + total4 + " €"); 
 			}
 		});
 		
