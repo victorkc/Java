@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -82,6 +83,24 @@ public class Login {
 			public void mouseClicked(MouseEvent arg0) {
 				Registro a = new Registro();
 				frmLogin.dispose();
+			}
+		});
+		
+		btnAcceder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String usuario = textField.getText();
+				String contrasena = textField_1.getText();
+				
+				if(usuario.equals("") || contrasena.equals(""))
+					JOptionPane.showMessageDialog(null, "Falta por rellernar algún campo");
+				
+				if(!usuario.equals("") && !contrasena.equals("")) {
+					JOptionPane.showMessageDialog(null, "Ingress completed");
+					Traductor t = new Traductor();
+					frmLogin.dispose();
+					
+				}
+				
 			}
 		});
 		
