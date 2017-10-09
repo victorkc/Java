@@ -3,6 +3,8 @@ package miniSudoku;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -13,6 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Interfaz {
 
@@ -34,6 +39,19 @@ public class Interfaz {
 	private JTextField textField_14;
 	private JTextField textField_15;
 	private JRadioButton rdbtnNewRadioButton;
+	
+	int gridBase[][] = { { 2, 0, 0, 0}, //
+						 { 0, 3, 0, 4}, //
+						 { 3, 0, 0, 1}, //
+						 { 4, 0, 3, 0} };
+	
+	int gridSolucion[][] = { { 2, 4, 1, 3}, //
+							 { 1, 3, 2, 4}, //
+							 { 3, 2, 4, 1}, //
+							 { 4, 1, 3, 2} };
+	
+	String gridStringBase[][] = new String[4][4];
+	String gridString[][] = new String[4][4];
 
 	/**
 	 * Launch the application.
@@ -75,7 +93,11 @@ public class Interfaz {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+
+	
 	private void initialize() {
+		
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,9 +118,11 @@ public class Interfaz {
 		panel_1.setLayout(new GridLayout(2, 0, 0, 0));
 		
 		JCheckBox chckbxSombreado = new JCheckBox("Sombreado");
+		chckbxSombreado.setSelected(true);
 		panel_1.add(chckbxSombreado);
 		
 		rdbtnNewRadioButton = new JRadioButton("Redimensionar");
+		rdbtnNewRadioButton.setSelected(true);
 		panel_1.add(rdbtnNewRadioButton);
 		
 		JPanel panel_2 = new JPanel();
@@ -108,11 +132,8 @@ public class Interfaz {
 		panel_2.setLayout(new GridLayout(0, 2, 0, 0));
 		panel_2.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Manual");
+		JButton btnNewButton_1 = new JButton("Comprobar sudoku");
 		panel_2.add(btnNewButton_1);
-		
-		JPanel panel_3 = new JPanel();
-		frame.getContentPane().add(panel_3, BorderLayout.SOUTH);
 		
 		JPanel panel_4 = new JPanel();
 		frame.getContentPane().add(panel_4, BorderLayout.CENTER);
@@ -165,9 +186,9 @@ public class Interfaz {
 		textField_7.setColumns(10);
 		
 		textField_8 = new JTextField();
+		textField_8.setEditable(false);
 		textField_8.setText("3");
 		textField_8.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_8.setEditable(false);
 		panel_4.add(textField_8);
 		textField_8.setColumns(10);
 		
@@ -212,27 +233,121 @@ public class Interfaz {
 		textField_15.setColumns(10);
 		panel_4.add(textField_15);
 		
+		
+		
+		// Array of the textfields for use them.
+		JTextField JTextField[][] = {{textField_0, textField_1, textField_2, textField_3},
+								     {textField_4, textField_5, textField_6, textField_7},
+								     {textField_8, textField_9, textField_10, textField_11},
+								     {textField_12, textField_13, textField_14, textField_15}
+								     };
+	
+		if(chckbxSombreado.isSelected())
+			for(int fila=0; fila<4; fila++)
+				for(int col=0; col<4; col++){
+					if(!JTextField[fila][col].isEditable())
+						JTextField[fila][col].setBackground(Color.LIGHT_GRAY);
+				}
+		
 		// Events on the buttons.
+		// Automático.
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int contador = 0;
 				for(int fila=0; fila<4; fila++)
 					for(int col=0; col<4; col++)
 					{
-						JTextField text1 = new JTextField();
-						text1.setHorizontalAlignment(SwingConstants.CENTER);
-						text1.setColumns(10);
-						panel_4.add(text1);
-						
+						JTextField[fila][col].setText(String.valueOf(gridSolucion[fila][col]));
+						JTextField[fila][col].setBackground(Color.LIGHT_GRAY);
 					}
-	
+			}
+		});
+		// Reiniciar el juego.
+		btnReiniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String check;
+				
+				for(int fila=0; fila<4; fila++)
+					for(int col=0; col<4; col++)
+					{
+						if(JTextField[fila][col].isEditable())
+							JTextField[fila][col].setBackground(Color.WHITE);
+						JTextField[fila][col].setText(String.valueOf(gridBase[fila][col]));
+						check = JTextField[fila][col].getText();
+						
+						if(check.equals("0"))
+							JTextField[fila][col].setText("");
+					}
+			}
+		});
+		// Corrección del sudoku.
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int contador=0;
+				
+				for(int fila=0; fila<4; fila++)
+					for(int col=0; col<4; col++){
+						gridString[fila][col] = JTextField[fila][col].getText();
+						gridStringBase[fila][col] = String.valueOf(gridSolucion[fila][col]);
+					}
+				
+				for(int fila=0; fila<4; fila++)
+					for(int col=0; col<4; col++){
+						if(gridString[fila][col].equals(gridStringBase[fila][col]))
+							contador++;
+						
+							//System.out.println(gridStringBase[fila][col]);
+							//System.out.println(gridCheck[fila][col]);
+					}
+				if(contador<16)
+					JOptionPane.showMessageDialog(null, "Alguna casilla está mal o está vacía, revísala");
+				else
+					JOptionPane.showMessageDialog(null, "Enhorabuena!!! Te has pasado el sudoku!!");
+				
+						
+			}
+		});		
+		// Salir del sudoku.
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 			}
 		});
 		
-		
-		
+		// Sombreado
+		chckbxSombreado.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//if(!JTextField[fila][col].isEditable())
+				if(!chckbxSombreado.isSelected())
+					for(int fila=0; fila<4; fila++)
+						for(int col=0; col<4; col++){
+							//JTextField[fila][col].setEditable(true);
+							if(!JTextField[fila][col].isEditable())
+							JTextField[fila][col].setBackground(Color.WHITE);
+						}
+				else//if(chckbxSombreado.isSelected())
+					for(int fila=0; fila<4; fila++)
+						for(int col=0; col<4; col++){
+							if(!JTextField[fila][col].isEditable())
+								JTextField[fila][col].setBackground(Color.LIGHT_GRAY);
+						}
+			}
+		});
+		// Redimensionar sudoku.
+		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(rdbtnNewRadioButton.isSelected())
+					frame.setResizable(true);
+				else
+					frame.setResizable(false);
+					
+			}
+		});
 	}
+	
+	
 	
 	static void printGrid(int grid[][]) {
 		for (int row = 0; row < Sudoku.getN(); row++) {
