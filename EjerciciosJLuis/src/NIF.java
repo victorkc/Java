@@ -1,18 +1,31 @@
 
 public class NIF {
 	
-	String dni;
+	private char letra;
+	private int dni;	
+	
+	public char getLetra() 
+	{
+		return letra;
+	}
 
-	public String getDni() {
+	public void setLetra(char letra) 
+	{
+		this.letra = letra;
+	}
+
+	public int getDni() 
+	{
 		return dni;
 	}
 
-	public void setDni(String dni) {
+	public void setDni(int dni) 
+	{
 		this.dni = dni;
 	}
-	
-	public void escribe()
-	{
+
+	public int calcularLetra(int dni)
+	{ // Devuelve el módulo.
 		
 	}
 

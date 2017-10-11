@@ -37,13 +37,21 @@ public class Fecha {
 		String mesNumero[] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "noviembre", "Diciembre"};
 		return "Día " + dia + " de " + mesNumero[mes-1] + " de " + anio;
 	}
-	
+	/*
 	public void correcta()
 	{
 		if(dia>0 && dia<31 && mes>0 && mes<13 && anio>1900 & anio<2018)
 			System.out.println("La fecha es correcta");
 		else
 			System.out.println("La fecha no se correcta");
+	} */
+	
+	public boolean correcta()
+	{
+		if(dia>0 && dia<31 && mes>0 && mes<13 && anio>1900 && anio<2018)
+			return true;
+		else
+			return false;
 	}
 	
 	
