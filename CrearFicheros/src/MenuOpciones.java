@@ -16,7 +16,7 @@ public class MenuOpciones {
 	static void crearFichero() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("\n Di el nombre del archivo que quieres darle: ");
-		String nombre = scan.nextLine();
+		String nombre = scan.nextLine() + ".txt";
 
 		File fichero = new File(nombre);
 
