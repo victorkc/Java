@@ -16,7 +16,7 @@ public class MenuOpciones {
 	static void crearFichero() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("\n Di el nombre del archivo que quieres darle: ");
-		String nombre = scan.nextLine() + ".txt";
+		String nombre = scan.nextLine();
 
 		File fichero = new File(nombre);
 
@@ -63,6 +63,10 @@ public class MenuOpciones {
 		File fichero = new File(scan.nextLine());
 		fichero.delete();
 	}
+	
+	static void arbolCarpetas() {
+		
+	}
 
 	public static void main(String[] args) {
 
@@ -97,7 +101,10 @@ public class MenuOpciones {
 				borrarFichero();
 				break;
 			case 6:
-
+				arbolCarpetas();
+				break;
+				
+			case 9:
 				break;
 
 			}
