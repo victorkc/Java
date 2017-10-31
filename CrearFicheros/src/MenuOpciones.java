@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 public class MenuOpciones {
 
+	private static final String hola = null;
+
 	static void crearFichero() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("\n Di el nombre del archivo que quieres darle: ");
@@ -65,6 +67,44 @@ public class MenuOpciones {
 	}
 	
 	static void arbolCarpetas() {
+		Scanner scan = new Scanner(System.in);
+		String cadena = scan.nextLine();
+		File fichero = new File(cadena);
+		fichero.mkdir();
+		fichero = new File(cadena + "\\Proyecto");
+		fichero.mkdir();
+		fichero = new File(cadena + "\\Proyecto\\bin");
+		fichero.mkdir();
+		fichero = new File(cadena + "\\Proyecto\\src");
+		fichero.mkdir();
+		fichero = new File(cadena + "\\Proyecto\\doc");
+		fichero.mkdir();
+		fichero = new File(cadena + "\\Proyecto\\bin\\bytecode");
+		fichero.mkdir();
+		fichero = new File(cadena + "\\Proyecto\\bin\\objetos");
+		fichero.mkdir();
+		fichero = new File(cadena + "\\Proyecto\\src\\clase");
+		fichero.mkdir();
+		fichero = new File(cadena + "\\Proyecto\\doc\\html");
+		fichero.mkdir();
+		fichero = new File(cadena + "\\Proyecto\\doc\\pdf");
+		fichero.mkdir();
+	}
+	
+	static void arbolCarpetas2() {
+		Scanner scan = new Scanner(System.in);
+		String cadena = scan.nextLine();
+		File fichero = new File(cadena);
+		String cadenas[] = {"\\Proyecto\\bin"
+				+ "\\Proyecto\\bin"
+				+ "\\Proyecto\\src"
+				+ "\\Proyecto\\doc"
+				+ "\\Proyecto\\bin\\bytecode"
+				+ "\\Proyecto\\bin\\objetos"
+				+ "\\Proyecto\\src\\clase"
+				+ "\\Proyecto\\doc\\html"
+				+ "\\Proyecto\\doc\\pdf"};
+		
 		
 	}
 
@@ -79,7 +119,9 @@ public class MenuOpciones {
 				+ "3. Mostrar long fichero.\n"
 				+ "4. Comprobar si existe.\n"
 				+ "5. Borrar fichero.\n"
-				+ "6. Salir.\n"
+				+ "6. Crear carpetas hardcodeado\n"
+				+ "7. Crear carpetas con método\n"
+				+ "9. Salir.\n"
 				+ "Escriba su opcion: ");
 
 		opcion = scan.nextInt();
@@ -102,6 +144,9 @@ public class MenuOpciones {
 				break;
 			case 6:
 				arbolCarpetas();
+				break;
+			case 7:
+				
 				break;
 				
 			case 9:

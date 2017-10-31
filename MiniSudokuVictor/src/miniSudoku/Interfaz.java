@@ -307,6 +307,7 @@ public class Interfaz {
 						
 			}
 		});		
+		
 		// Salir del sudoku.
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -334,6 +335,7 @@ public class Interfaz {
 						}
 			}
 		});
+		
 		// Redimensionar sudoku.
 		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
 			@Override
