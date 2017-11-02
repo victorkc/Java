@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+	
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.tlf_internal;
+			
+			import mx.states.SetStyle;
+			
+			import spark.events.IndexChangeEvent;
+			import spark.events.TextOperationEvent;
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// AL HACER CLICK EN EL BOTÓN ESCRIBIR, LO ESCRIBE EN LA CAJA.
+				texto1.text = "pulsado";
+			}
+			
+			protected function textarea1_changeHandler(event:TextOperationEvent):void
+			{
+				// AL ESCRIBIR CAMBIAR EL RADIO BUT SELECCIONADO
+				if(radioh.selected == true)
+				{
+				radiom.selected = true;
+				}
+				else
+				{
+				radioh.selected = true;
+				}
+				
+			}
+			
+			protected function checkbox1_clickHandler(event:MouseEvent):void
+			{
+				// CAMBIA FONDO TEXT FIELD
+				if(checkbox1.selected)
+				caja.setStyle("contentBackgroundColor", "red");
+				else
+					caja.setStyle("contentBackgroundColor", "white");
+			}
+			
+			protected function combobox1_changeHandler(event:IndexChangeEvent):void
+			{
+				// PONE EL TEXTO DEL SELECTOR AL TEXT FIELD
+				caja.text = combobox1.selectedItem;
+			}
+			
+			protected function radio4_clickHandler(event:MouseEvent):void
+			{
+				// FONDO TODO AZUL
+				setStyle("backgroundColor", "blue");
+			}
+			
+			protected function image1_mouseOverHandler(event:MouseEvent):void
+			{
+				// CON EL RATÓN POR ENCIMA CAMBIA LA IMAGEN
+				caja.text = "Estoy en la imagen";				
+			}
+			
+			protected function image1_mouseOutHandler(event:MouseEvent):void
+			{
+				// CON EL RATÓN POR FUERA CAMBIA LA IMAGEN
+				caja.text = "No estoy en la imagen";
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:RadioButtonGroup id="radiogroup1"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Button x="63" y="53" label="Button" click="button1_clickHandler(event)" enabled="true"/>
+	<s:TextInput id="texto1" x="179" y="53" editable="true" maxChars="5" prompt="Hi onee-chan"/>
+	<s:TextArea id="caja" x="577" y="177" change="textarea1_changeHandler(event)"/>
+	<s:CheckBox id="checkbox1" x="63" y="125" label="CheckBox" click="checkbox1_clickHandler(event)"/>
+	<s:ComboBox id="combobox1" x="577" y="336" change="combobox1_changeHandler(event)" enabled="true"
+				labelField="hola"> 
+	<s:ArrayList>
+		<fx:String>Agustin</fx:String>
+		<fx:String>Damian</fx:String>
+		<fx:String>Alfredo</fx:String>
+		<fx:String>Daniel</fx:String>
+	</s:ArrayList>
+	</s:ComboBox>
+	<s:RadioButton id="radioh" x="63" y="99" label="Radio" selected="true"/>
+	<s:RadioButton id="radiom" x="141" y="99" label="Radio"/>
+	<s:RadioButton x="63" y="156" label="Radio"/>
+	<s:RadioButton id="radio4" x="141" y="156" label="Radio" click="radio4_clickHandler(event)"/>
+	<mx:DateChooser x="838" y="177" displayedMonth="12" displayedYear="1990" enabled="true"/>
+	<s:Image x="10" y="288" width="540" height="311" mouseOut="image1_mouseOutHandler(event)"
+			 mouseOver="image1_mouseOverHandler(event)" scaleMode="letterbox" smooth="true"
+			 source="assets/descarga.jpg"/>
+	<s:List id="lista" x="577" y="367" width="146" height="108">
+	<s:ArrayList>
+		<fx:String>Agustin</fx:String>
+		<fx:String>Damian</fx:String>
+		<fx:String>Alfredo</fx:String>
+		<fx:String>Daniel</fx:String>
+	</s:ArrayList>
+	</s:List>
+</s:Application>
+
+

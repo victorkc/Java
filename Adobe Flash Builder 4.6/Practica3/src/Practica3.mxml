@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			// Donde van a ir todas las variables y funciones.
+			var logueo = false;
+			var PN = true; // PRIMER NÚMERO A OPERAR.
+			var n1 = "";
+			var n2 = "";
+			var signo = false;
+			var operador = "";
+			var resultado = 0;
+			//n1 = parseInt(n1);
+			
+			
+			
+			public function exit_app(event:CloseEvent):void // FUNCION PARA EL DESLOGUEO
+			{
+				if (event.detail == Alert.OK)
+				{
+				logueo = false;
+				botonLogin.enabled = true;
+				deslogueo.enabled = false;
+				CalculadoraSencilla.enabled = false;
+				pitagoras.enabled = false;
+				
+				}
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void // Lo que ocurre en el login.
+			{
+				var login:String = loginText.text;
+				var passw:String = passwText.text;
+				if(login == "" && passw == ""){ // Campos vacíos.
+				Alert.show("Los campos están vacíos.", "Error de login", mx.controls.Alert.OK);
+					//resultado.text = "Funciona";
+				}
+				if(login != passw) // Campos distintos.
+					Alert.show("Los campos no coinciden.", "Error de login", mx.controls.Alert.OK);
+				
+				if(login == passw) // CUANDO LOGUEAS, ACTIVA LA PESTAÑA SELECCIONADA.
+				{
+					if(botonCalculadora.selected)
+						CalculadoraSencilla.enabled = true;
+					else
+						pitagoras.enabled = true;
+					logueo = true;
+					botonLogin.enabled = false;
+					deslogueo.enabled = true;
+						
+				}
+			}
+				
+			protected function botonCalculadora_clickHandler(event:MouseEvent):void // SI ESTAS LOGUEADO, PERMITE CAMBIAR ENTRE LA CALCULADORA Y PITÁGORAS
+			{
+				if(logueo == true)
+				{
+					CalculadoraSencilla.enabled = true;
+					pitagoras.enabled = false;
+				}
+			}
+			
+			protected function botonPitagoras_clickHandler(event:MouseEvent):void // SI ESTAS LOGUEADO, PERMITE CAMBIAR ENTRE LA CALCULADORA Y PITÁGORAS
+			{
+				if(logueo == true)
+				{
+					CalculadoraSencilla.enabled = false;
+					pitagoras.enabled = true;
+				}
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void // BOTÓN DE LOGOUT Y SUS FUNCIONES.
+			{
+				Alert.show('Salir','¿Realmente desea salir?', Alert.OK | Alert.CANCEL, this, exit_app);
+					
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void //BOTON 1
+			{
+				if(PN == true)
+				{
+				operaciones.text += "1";
+				n1 += "1";
+				}
+				else
+				{
+					operaciones.text += "1";
+					n2 += "1";
+				}
+					
+			}
+			
+			protected function button4_clickHandler(event:MouseEvent):void
+			{
+				if(PN == true)
+				{
+					operaciones.text += "2";
+					n1 += "2";
+				}
+				else
+				{
+					operaciones.text += "2";
+					n2 += "2";
+				}
+				
+			}
+			
+			protected function button5_clickHandler(event:MouseEvent):void
+			{
+				if(PN == true)
+				{
+					operaciones.text += "3";
+					n1 += "3";
+				}
+				else
+				{
+					operaciones.text += "3";
+					n2 += "3";
+				}
+			}
+			
+			protected function button6_clickHandler(event:MouseEvent):void
+			{
+				if(PN == true)
+				{
+					operaciones.text += "4";
+					n1 += "4";
+				}
+				else
+				{
+					operaciones.text += "4";
+					n2 += "4";
+				}
+				
+			}
+			
+			protected function button7_clickHandler(event:MouseEvent):void
+			{
+				if(PN == true)
+				{
+					operaciones.text += "5";
+					n1 += "5";
+				}
+				else
+				{
+					operaciones.text += "5";
+					n2 += "5";
+				}
+			}
+			
+			protected function button8_clickHandler(event:MouseEvent):void
+			{
+				if(PN == true)
+				{
+					operaciones.text += "6";
+					n1 += "6";
+				}
+				else
+				{
+					operaciones.text += "6";
+					n2 += "6";
+				}
+			}
+			
+			protected function button9_clickHandler(event:MouseEvent):void
+			{
+				if(PN == true)
+				{
+					operaciones.text += "7";
+					n1 += "7";
+				}
+				else
+				{
+					operaciones.text += "7";
+					n2 += "7";
+				}
+			}
+			
+			protected function button10_clickHandler(event:MouseEvent):void
+			{
+				if(PN == true)
+				{
+					operaciones.text += "8";
+					n1 += "8";
+				}
+				else
+				{
+					operaciones.text += "8";
+					n2 += "8";
+				}
+			}
+			
+			protected function button11_clickHandler(event:MouseEvent):void
+			{
+				if(PN == true)
+				{
+					operaciones.text += "9";
+					n1 += "9";
+				}
+				else
+				{
+					operaciones.text += "9";
+					n2 += "9";
+				}
+			}
+			
+			protected function button12_clickHandler(event:MouseEvent):void
+			{
+				
+				if(PN == true)
+				{
+					if(n1 != "")
+					{
+						operaciones.text += "0";
+						n1 += "0";
+					}
+				}
+				else
+				{
+					if(n2 != "")
+					{
+					operaciones.text += "0";
+					n2 += "0";
+					}
+				}
+			}
+			
+			protected function button13_clickHandler(event:MouseEvent):void
+			{
+				if(n1 != "")
+					if(signo != true)
+						{
+							operaciones.text += " + ";
+							signo = true;
+							operador = "+";
+							PN = false;
+						}
+						
+			}
+			
+			protected function button14_clickHandler(event:MouseEvent):void
+			{
+				if(n1 != "")
+					if(signo != true)
+					{
+						operaciones.text += " - ";
+						signo = true;
+						operador = "-";
+						PN = false;
+					}
+			}
+			
+			protected function button15_clickHandler(event:MouseEvent):void
+			{
+				if(n1 != "")
+					if(signo != true)
+					{
+						operaciones.text += " x ";
+						signo = true;
+						operador = "*";
+						PN = false;
+					}
+			}
+			
+			protected function button16_clickHandler(event:MouseEvent):void
+			{
+				if(n1 != "")
+					if(signo != true)
+					{
+						operaciones.text += " / ";
+						signo = true;
+						operador = "/";
+						PN = false;
+					}
+			}
+			
+			protected function button17_clickHandler(event:MouseEvent):void // BOTON C PARA REINICIAR OPERACIONES
+			{
+				n1="";
+				n2="";
+				signo = false;
+				operaciones.text = "";
+				cajaResultado.text = "";
+				PN = true;
+			}
+			
+			protected function button18_clickHandler(event:MouseEvent):void // BOTON = PARA RESOLVER LA OPERACIÓN.
+			{
+				
+				n1 = parseInt(n1);
+				n2 = parseInt(n2);
+				//resultado = parseInt(n1)+parseInt(n2);
+				//resultado = n1+n2;
+
+				if(operador == "+")	
+					cajaResultado.text = n1+n2;
+				if(operador == "-")	
+				{
+					resultado = n1-n2;
+					cajaResultado.text = resultado;				
+				}
+				if(operador == "*")	
+				{
+					resultado = n1*n2;
+				cajaResultado.text = resultado;
+				}
+				
+				if(operador == "/")
+				{
+					if(n2 == 0)
+					{
+						cajaResultado.text = "INFINITY";
+					}
+						
+					else
+					{
+						resultado = n1/n2;
+						cajaResultado.text = resultado;
+					}
+				}
+					
+				
+		
+			}
+			
+			protected function imagen_clickHandler(event:MouseEvent):void // CLICK EN LA IMAGEN Y SU RESOLUCIÓN
+			{
+				// N2(cuadrado) = n*n
+				var c1 = cateto1.text;
+				var c2 = cateto2.text;
+				var hipo;
+				hipo = Math.sqrt((c1*c1)+(c2*c2));
+				hipotenusa.text = hipo;
+				
+			}
+			
+			protected function button19_clickHandler(event:MouseEvent):void
+			{
+				cateto1.text = "";
+				cateto2.text = "";
+				hipotenusa.text = "";
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:RadioButtonGroup id="radiogroup1"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Panel x="270" y="122" width="307" height="183" fontSize="14" title="Acceso">
+		<s:TextInput id="loginText" x="14" y="14" width="163" height="30" prompt="Login"/>
+		<s:TextInput id="passwText" x="13" y="51" width="164" height="30" displayAsPassword="true"
+					 prompt="Password"/>
+		<s:Button id="botonLogin" x="60" y="100" width="90" height="32" label="Login"
+				  click="button1_clickHandler(event)"/>
+		<s:Button id="deslogueo" x="163" y="100" width="90" height="32" label="Logout"
+				  click="button2_clickHandler(event)" enabled="false"/>
+		<s:Label x="196" y="20" text="Activar:"/>
+		<s:VGroup x="195" y="38" width="100">
+			<s:RadioButton id="botonCalculadora" label="Calculadora"
+						   click="botonCalculadora_clickHandler(event)" groupName="radiogroup1"
+						   selected="true"/>
+			<s:RadioButton id="botonPitagoras" label="Pitágoras"
+						   click="botonPitagoras_clickHandler(event)" groupName="radiogroup1"/>
+		</s:VGroup>
+	</s:Panel>
+	<s:Panel id="CalculadoraSencilla" x="590" y="122" width="250" height="375" enabled="false"
+			 fontSize="14" title="Calculadora sencilla">
+		<s:TextInput id="operaciones" x="10" y="14" width="228" height="27" color="#ADADAD"
+					 fontSize="14" fontStyle="normal" textAlign="right"/>
+		<s:TextInput id="cajaResultado" x="10" y="49" width="228" height="50" fontFamily="Arial"
+					 fontSize="27" fontStyle="normal" fontWeight="normal" prompt="0"
+					 textAlign="right"/>
+		<s:Button x="11" y="107" width="50" height="50" label="1" click="button3_clickHandler(event)"
+				  fontSize="25"/>
+		<s:Button x="69" y="107" width="50" height="50" label="2" click="button4_clickHandler(event)"
+				  fontSize="25"/>
+		<s:Button x="129" y="107" width="50" height="50" label="3"
+				  click="button5_clickHandler(event)" fontSize="25"/>
+		<s:Button x="187" y="107" width="50" height="50" label="+"
+				  click="button13_clickHandler(event)" fontSize="25"/>
+		<s:Button x="11" y="165" width="50" height="50" label="4" click="button6_clickHandler(event)"
+				  fontSize="25"/>
+		<s:Button x="69" y="165" width="50" height="50" label="5" click="button7_clickHandler(event)"
+				  fontSize="25"/>
+		<s:Button x="129" y="165" width="50" height="50" label="6"
+				  click="button8_clickHandler(event)" fontSize="25"/>
+		<s:Button x="187" y="165" width="50" height="50" label="-"
+				  click="button14_clickHandler(event)" fontSize="25"/>
+		<s:Button x="11" y="223" width="50" height="50" label="7" click="button9_clickHandler(event)"
+				  fontSize="25"/>
+		<s:Button x="69" y="223" width="50" height="50" label="8"
+				  click="button10_clickHandler(event)" fontSize="25"/>
+		<s:Button x="129" y="223" width="50" height="50" label="9"
+				  click="button11_clickHandler(event)" fontSize="25"/>
+		<s:Button x="187" y="223" width="50" height="50" label="X"
+				  click="button15_clickHandler(event)" fontSize="25"/>
+		<s:Button x="11" y="281" width="50" height="50" label="C"
+				  click="button17_clickHandler(event)" fontSize="25"/>
+		<s:Button x="69" y="281" width="50" height="50" label="0"
+				  click="button12_clickHandler(event)" fontSize="25"/>
+		<s:Button x="129" y="281" width="50" height="50" label="="
+				  click="button18_clickHandler(event)" fontSize="25"/>
+		<s:Button x="187" y="281" width="50" height="50" label="/"
+				  click="button16_clickHandler(event)" fontSize="25"/>
+	</s:Panel>
+	<s:Panel id="pitagoras" x="270" y="314" width="307" height="183" enabled="false" fontSize="14"
+			 title="Teorema de Pitágoras">
+		<s:Button x="171" y="-24" width="125" height="20" label="Reiniciar"
+				  click="button19_clickHandler(event)"/>
+		<s:TextInput id="cateto1" x="171" y="10" width="125" height="36" fontSize="18"
+					 prompt="Cateto 1"/>
+		<s:TextInput id="cateto2" x="171" y="54" width="125" height="36" fontSize="18"
+					 prompt="Cateto 2"/>
+		<s:TextInput id="hipotenusa" x="171" y="98" width="125" height="36" editable="false"
+					 fontSize="18" prompt="Hipotenusa"/>
+		<s:Image id="imagen" x="10" y="10" width="153" height="130"
+				 click="imagen_clickHandler(event)"
+				 source="@Embed('file:///C:/Users/CFGS/Desktop/triangulo.png')"/>
+	</s:Panel>
+</s:Application>
